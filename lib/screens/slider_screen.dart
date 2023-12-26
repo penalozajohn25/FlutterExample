@@ -10,7 +10,7 @@ class SliderScreen extends StatefulWidget {
 
 class _SliderScreenState extends State<SliderScreen> {
   double _sliderValue = 100;
-
+  bool _sliderEnabled = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,19 +22,49 @@ class _SliderScreenState extends State<SliderScreen> {
             children: [
               Slider.adaptive(
                   min: 40,
-                  max: 400,
+                  max: 1400,
                   activeColor: AppTheme.primary,
                   divisions: 10,
                   value: _sliderValue,
+                  onChanged: _sliderEnabled
+                      ? ((value) {
+                          _sliderValue = value;
+                          setState(() {});
+                        })
+                      : null),
+              // Checkbox(
+              //     value: _sliderEnabled,
+              //     onChanged: (value) {
+              //       _sliderEnabled = value ?? true;
+              //       setState(() {});
+              //     }),
+              CheckboxListTile(
+                  activeColor: AppTheme.primary,
+                  value: _sliderEnabled,
+                  title: const Text("Habilitar Slider"),
                   onChanged: ((value) {
-                    _sliderValue = value;
-                    setState(() {});
+                    setState(() {
+                      _sliderEnabled = value ?? true;
+                    });
                   })),
-              Image(
-                image: const NetworkImage(
-                    "https://c0.klipartz.com/pngpicture/791/718/gratis-png-batman-superman-diana-prince-dc-universo-animado-dibujo-batman.png"),
-                fit: BoxFit.contain,
-                width: _sliderValue,
+              SwitchListTile(
+                  activeColor: AppTheme.primary,
+                  value: _sliderEnabled,
+                  title: const Text("Habilitar Slider"),
+                  onChanged: ((value) {
+                    setState(() {
+                      _sliderEnabled = value ?? true;
+                    });
+                  })),
+
+              const AboutListTile(),
+              SingleChildScrollView(
+                child: Image(
+                  image: const NetworkImage(
+                      "https://c0.klipartz.com/pngpicture/791/718/gratis-png-batman-superman-diana-prince-dc-universo-animado-dibujo-batman.png"),
+                  fit: BoxFit.contain,
+                  width: _sliderValue,
+                ),
               ),
               const SizedBox(height: 20)
             ],
