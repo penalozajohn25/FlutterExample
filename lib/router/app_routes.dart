@@ -46,6 +46,11 @@ class AppRoutes {
         icon: Icons.slow_motion_video_rounded,
         name: 'Slider && Check',
         screent: const SliderScreen()),
+    MenuOptions(
+        route: 'List View Builder',
+        icon: Icons.line_style_outlined,
+        name: 'List Builder',
+        screent: const ListViewBuilderScreen())
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
